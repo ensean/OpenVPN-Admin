@@ -4,7 +4,6 @@
    <li class="active"><a data-toggle="tab" href="#menu0"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> OpenVPN Users</a></li>
    <li><a data-toggle="tab" href="#menu1"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> OpenVPN logs</a></li>
    <li><a data-toggle="tab" href="#menu2"><span class="glyphicon glyphicon-king" aria-hidden="true"></span> Web Admins</a></li>
-   <li><a data-toggle="tab" href="#menu3"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Configs</a></li>
 </ul>
 <div class="tab-content">
 
