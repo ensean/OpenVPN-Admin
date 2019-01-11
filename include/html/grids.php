@@ -1,31 +1,4 @@
 <?php
-function getHistory($cfg_file, $accordion_id, $open_first_history_tab = false) {
-   ob_start(); ?>
-   <h3>History</h3>
-   <div class="panel-group" id="accordion<?= $accordion_id ?>">
-      <?php foreach (array_reverse(glob('client-conf/'.basename(pathinfo($cfg_file, PATHINFO_DIRNAME)).'/history/*')) as $i => $file): ?>
-         <div class="panel panel-default">
-            <div class="panel-heading">
-               <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion<?= $accordion_id ?>" href="#collapse<?= $accordion_id ?>-<?= $i ?>">
-                     <?php
-                     $history_file_name = basename($file);
-                     $chunks = explode('_', $history_file_name);
-                     printf('[%s] %s', date('r', $chunks[0]), $chunks[1]);
-                     ?>
-                  </a>
-               </h4>
-            </div>
-            <div id="collapse<?= $accordion_id ?>-<?= $i ?>" class="panel-collapse collapse <?= $i===0 && $open_first_history_tab?'in':'' ?>">
-               <div class="panel-body"><pre><?= file_get_contents($file) ?></pre></div>
-            </div>
-         </div>
-      <?php endforeach; ?>
-   </div><?php
-   $history = ob_get_contents();
-   ob_end_clean();
-   return $history;
-}
 ?>
 <ul class="nav nav-tabs">
    <li class="active"><a data-toggle="tab" href="#menu0"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> OpenVPN Users</a></li>
@@ -87,40 +60,6 @@ function getHistory($cfg_file, $accordion_id, $open_first_history_tab = false) {
                </div>
             </div>
          </div>
-      </div>
-   </div>
-
-   <div id="menu3" class="tab-pane fade">
-      <!-- configs -->
-      <div class="block-grid row" id="config-cards">
-         <ul class="nav nav-tabs nav-tabs-justified">
-            <li class="active"><a data-toggle="tab" href="#menu-1-0"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Linux</a></li>
-            <li><a data-toggle="tab" href="#menu-1-1"><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Windows</a></li>
-            <li><a data-toggle="tab" href="#menu-1-2"><span class="glyphicon glyphicon-apple" aria-hidden="true"></span> OSX</a></li>
-
-            <li id="save-config-btn" class="pull-right hidden"><a class="progress-bar-striped" href="javascript:;"><span class="glyphicon glyphicon-save" aria-hidden="true"></span></a></li>
-         </ul>
-         <div class="tab-content">
-            <div id="menu-1-0" class="tab-pane fade in active">
-
-               <textarea class="form-control" data-config-file="<?= $cfg_file='client-conf/gnu-linux/client.conf' ?>" name="" id="" cols="30" rows="20"><?= file_get_contents($cfg_file) ?></textarea>
-               <?= getHistory($cfg_file, @++$accId) ?>
-
-            </div>
-            <div id="menu-1-1" class="tab-pane fade">
-
-               <textarea class="form-control" data-config-file="<?= $cfg_file='client-conf/windows/client.ovpn' ?>" name="" id="" cols="30" rows="20"><?= file_get_contents($cfg_file) ?></textarea>
-               <?= getHistory($cfg_file, ++$accId) ?>
-
-            </div>
-            <div id="menu-1-2" class="tab-pane fade">
-
-               <textarea class="form-control" data-config-file="<?= $cfg_file='client-conf/osx-viscosity/client.conf' ?>" name="" id="" cols="30" rows="20"><?= file_get_contents($cfg_file) ?></textarea>
-               <?= getHistory($cfg_file, ++$accId) ?>
-
-            </div>
-         </div>
-
       </div>
    </div>
 
