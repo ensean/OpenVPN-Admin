@@ -198,7 +198,6 @@ $(function () {
     idField: 'user_id',
     columns: [
       { title: "ID", field: "user_id", editable: userEditable },
-      { title: "Pass", field: "user_pass", editable: userEditable },
       { title: "Mail", field: "user_mail", editable: userEditable },
       { title: "Phone", field: "user_phone", editable: userEditable },
       {
@@ -256,7 +255,6 @@ $(function () {
     idField: 'admin_id',
     columns: [
       { title: "ID", field: "admin_id", editable: adminEditable },
-      { title: "Pass", field: "admin_pass", editable: adminEditable },
       {
         title: 'Delete',
         field: "admin_del",
